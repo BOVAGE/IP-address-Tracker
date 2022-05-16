@@ -1,0 +1,43 @@
+@media screen and (min-width:990px) {
+    .header {
+        padding-left: 50px;
+        padding-right: 50px;
+
+        &-form {
+            width: 50%;
+            margin: 0 auto;
+        }
+    }
+    
+    .modal-box {
+        @include flex-display(row);
+        padding: 30px 20px;
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 65%;
+    
+        &__info {
+            padding-right: 41px;
+            padding-left: 14px;
+            border-left: 0.5px solid $dark-gray;
+            text-align: left;
+
+            &:first-child {
+                border-left: none;
+                padding-left: 0;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $desktop-width) {
+    .header-form {
+        width: 40%;
+    }
+
+    .modal-box__info-heading--main {
+        font-size: 1.6rem;
+    }
+}
