@@ -20,12 +20,12 @@ body {
   font-family: 'Rubik', sans-serif;
   font-size: 18px;
   line-height: 1.5;
-  background-color: red;
 }
 
 .header {
-  background-image: url("../../images/pattern-bg.png");
+  background-image: url("../images/pattern-bg.png");
   background-repeat: no-repeat;
+  background-size: cover;
   height: 270px;
   text-align: center;
   padding: 15px 25px;
@@ -88,6 +88,7 @@ body {
   background-color: #000;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
+  cursor: pointer;
 }
 
 .modal-box {
@@ -102,6 +103,10 @@ body {
           flex-direction: column;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
+  position: relative;
+  z-index: 1000;
+  -webkit-box-shadow: 4px 4px 6px 0px #969696;
+          box-shadow: 4px 4px 6px 0px #969696;
 }
 
 .modal-box__info {
@@ -122,6 +127,10 @@ body {
 .modal-box__info-heading--main {
   color: #2b2b2b;
   font-size: 1.3rem;
+}
+
+.map-body {
+  height: 200px;
 }
 
 @media screen and (min-width: 990px) {

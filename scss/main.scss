@@ -15,12 +15,12 @@ body {
     font-family: 'Rubik', sans-serif;
     font-size: 18px;
     line-height: 1.5;
-    background-color: red;
 }
 
 .header {
-    background-image: url('../../images/pattern-bg.png');
+    background-image: url('../images/pattern-bg.png');
     background-repeat: no-repeat;
+    background-size: cover;
     height: 270px;
     text-align: center;
     padding: 15px 25px;
@@ -63,6 +63,7 @@ body {
         background-color: #000;
         border-top-right-radius: $radius;
         border-bottom-right-radius: $radius;
+        cursor: pointer;
     }
 }
 
@@ -70,6 +71,9 @@ body {
     border-radius: $radius;
     background-color: #fff;
     @include flex-display(column);
+    position: relative;
+    z-index: 1000;
+    box-shadow: 4px 4px 6px 0px $dark-gray;
 
     &__info {
         padding: 10px;
@@ -90,6 +94,10 @@ body {
             font-size: 1.3rem;
         }
     }
+}
+
+.map-body {
+    height: 200px;
 }
 
 @import 'responsiveness';
