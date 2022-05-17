@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+  integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+  crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+  integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+  crossorigin=""></script>
+  <title>Frontend Mentor | IP Address Tracker</title>
+
+  <link rel="stylesheet" href="css\main.css">
+</head>
+<body>
+  <header class="header">
+    <h3 class="header__heading">IP Address Tracker</h3>
+    
+    <form class="header-form" action="/" method="POST">
+      <input class="header-form__input" type="text" name="ip_address" 
+      placeholder="Search for any IP address or domain" id="ip_address" required>
+      <button class="header-form__container" type="submit"><img src="images/icon-arrow.svg" alt="" srcset=""></button>
+    </form>
+
+    <div class="modal-box">
+      <div class="modal-box__info">
+        <h4 class="modal-box__info-heading modal-box__info-heading--sub">IP Address</h3>
+        <h2 class="modal-box__info-heading modal-box__info-heading--main"><%=ip%></h2>
+      </div>
+      <div class="modal-box__info">
+        <h4 class="modal-box__info-heading modal-box__info-heading--sub">Location</h3>
+        <h2 class="modal-box__info-heading modal-box__info-heading--main"><%=location.region%>, <%=location.country%></h2>
+      </div>
+      <div class="modal-box__info">
+        <h4 class="modal-box__info-heading modal-box__info-heading--sub">Timezone</h3>
+        <h2 class="modal-box__info-heading modal-box__info-heading--main">UTC <%=location.timezone%></h2>
+      </div>
+      <div class="modal-box__info">
+        <h4 class="modal-box__info-heading modal-box__info-heading--sub">ISP</h3>
+        <h2 class="modal-box__info-heading modal-box__info-heading--main"><%=isp%></h2>
+      </div>
+      
+    </div>
+  </header>
+
+  <div id="map" class="map-body">
+
+  </div>
+  
+  
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+
+  <script>
+    const header = document.querySelector('.header');
+    const mapBody = document.querySelector('.map-body');
+
+    // setting height for the map-body dynamically 
+    mapBody.style.height = `${window.innerHeight - header.offsetHeight}px`;
+    var map = L.map('map').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: <%- JSON.stringify(mapboxToken) %>
+    }).addTo(map);
+
+  </script>
+</body>
+</html>

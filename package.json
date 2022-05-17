@@ -1,0 +1,27 @@
+{
+  "name": "ip-address-tracker",
+  "version": "1.0.0",
+  "description": "Ip address tracker solution to Frontend Mentor Challenge",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BOVAGE/IP-address-Tracker.git"
+  },
+  "author": "Boluwatife Fayemi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BOVAGE/IP-address-Tracker/issues"
+  },
+  "homepage": "https://github.com/BOVAGE/IP-address-Tracker#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "node-fetch": "^3.2.4"
+  }
+}
