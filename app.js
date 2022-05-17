@@ -19,18 +19,37 @@ const apiKey = process.env.apiKey;
 const mapboxToken = process.env.mapboxToken;
 const baseUrl = `https://geo.ipify.org/api/v2/country?apiKey=${apiKey}`;
 
+// geo.ipify api does not return lat and long alongside its response 
+// I used another api to get the lat and long https://ip-api.com/
+
 app.get("/", async (req, res) => {
+
     const resp = await fetch(baseUrl);
-    const data = await resp.json();
+    let  data = await resp.json();
+    const ipAddress = data.ip;
+    const latLongUrl = `http://ip-api.com/json/${ipAddress}?fields=lat,lon`;
+    const latLongResp = await fetch(latLongUrl);
+    const latLongData = await latLongResp.json();
     data.mapboxToken = mapboxToken;
+    data = {...data, ...latLongData};
     res.render("index.ejs", data);
 });
 
 app.post("/", async (req, res) => {
     const resp = await fetch(baseUrl + `&ipAddress=${req.body.ip_address}`);
-    const data = await resp.json();
-    data.mapboxToken = mapboxToken;
-    res.render("index.ejs", data);
+    if (resp.status === 200){
+        let data = await resp.json();
+        const ipAddress = data.ip;
+        const latLongUrl = `http://ip-api.com/json/${ipAddress}?fields=lat,lon`;
+        const latLongResp = await fetch(latLongUrl);
+        const latLongData = await latLongResp.json();
+        data.mapboxToken = mapboxToken;
+        data = {...data, ...latLongData};
+        res.render("index.ejs", data);
+    } else{
+        res.redirect("/");
+    }
+    
 })
 
 
