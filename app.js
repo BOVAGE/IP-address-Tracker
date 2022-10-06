@@ -25,10 +25,11 @@ const baseUrl = `http://geo.ipify.org/api/v2/country?apiKey=${apiKey}`;
 // I used another api to get the lat and long https://ip-api.com/
 
 app.get("/", async (req, res) => {
-
-    const resp = await fetch(baseUrl);
+    let ipAddress = req.ip;
+    // ipAddress = environ == "local" ? data.ip : req.ip;
+    const resp = await fetch(baseUrl + `&ipAddress=${ipAddress}`);
     let data = await resp.json();
-    const ipAddress = environ == "local" ? data.ip : req.ip
+
     const latLongUrl = `http://ip-api.com/json/${ipAddress}?fields=lat,lon`;
     const latLongResp = await fetch(latLongUrl);
     const latLongData = await latLongResp.json();
